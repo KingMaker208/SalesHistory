@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Sales Data</title>
+	<link href="/css/home.css" rel="stylesheet">
+	<link href="/css/Table.css" rel="stylesheet">
+</head>
+
+<body>
+	<div align="right">
+		<form action="/logout" method="post">
+			<button type="submit">Logout</button>
+		</form>
+
+	</div>
+	<div th:if="${sales.isEmpty()}" align="center">
+		<h1>No sales</h1>
+	</div>
+	<form method="get" th:action="@{/home}">
+		<button type="submit">Home</button>
+	</form>
+
+
+
+	<div th:unless="${sales.isEmpty()}" align="center">
+		<h2>Sales Data</h2>
+		<table border="1" class="styled-table">
+			<thead>
+				<tr>
+					<th>Sale ID</th>
+					<th>Product Name</th>
+					<th>Product Price</th>
+					<th>Customer Name</th>
+					<th>Customer Country</th>
+					<th>Sale Date</th>
+					<th>Channel Description</th>
+					<th>Promotion</th>
+					<th>Quantity Sold</th>
+					<th>Amount Sold</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="sale : ${sales}">
+					<td th:text="${sale.saleId}"></td>
+					<td th:text="${sale.prodId.prodName}"></td>
+					<td th:text="${sale.prodId.prodListPrice}"></td>
+					<td th:text="${sale.custId.custFirstName + ' ' + sale.custId.custLastName}"></td>
+					<td th:text="${sale.custId.countryId.countryName}"></td>
+					<td th:text="${sale.timeId.timeId}"></td>
+					<td th:text="${sale.channelId.channelDesc}"></td>
+					<td th:text="${sale.promoId.promoSubcategory}"></td>
+					<td th:text="${sale.quantitySold}"></td>
+					<td th:text="${sale.amount_sold}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+
+</html>

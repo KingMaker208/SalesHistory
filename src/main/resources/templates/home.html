@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Home</title>
+	<link href="/css/home.css" rel="stylesheet">
+</head>
+
+<body>
+	<div align="right">
+		<form action="/logout" method="post">
+			<button type="submit">Logout</button>
+		</form>
+
+	</div>
+	<header>
+		<!-- Navigation bar can be added here if needed -->
+		<h1>Dashboard</h1>
+	</header>
+
+	<div class="container">
+		<section class="sales-section">
+			<h2>Sales Data</h2>
+			<form method="get" th:action="@{/home/sales}">
+				<button type="submit">Get all sales</button>
+			</form>
+			<form method="get" th:action="@{/home/quarter}">
+				<button type="submit">Sales by quarter</button>
+			</form>
+			<form method="get" th:action="@{/home/date}">
+				<button type="submit">Sales by Date</button>
+			</form>
+		</section>
+
+		<section class="category-section">
+			<h2>Category Data</h2>
+			<form method="get" th:action="@{/home/categoryWise}">
+				<button type="submit">Category-wise quantity</button>
+			</form>
+			<form method="get" th:action="@{/home/categoryWiseByYear}">
+				<button type="submit">Yearly Category-wise Quantity</button>
+			</form>
+		</section>
+
+		<section class="amount-section">
+			<h2>Amount Data</h2>
+			<form method="get" th:action="@{/home/categoryWiseAmountSold}">
+				<button type="submit">Total Amount per category</button>
+			</form>
+			<form method="get" th:action="@{/home/categoryWiseAmountByYear}">
+				<button type="submit">Yearly Amount per Category</button>
+			</form>
+		</section>
+	</div>
+	<footer>
+		<!-- Footer content goes here -->
+	</footer>
+</body>
+
+</html>

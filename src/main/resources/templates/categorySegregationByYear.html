@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Sales by Date</title>
+	<link href="/css/home.css" rel="stylesheet">
+	<link href="/css/Table.css" rel="stylesheet">
+</head>
+
+<body>
+	<div align="right">
+		<form action="/logout" method="post">
+			<button type="submit">Logout</button>
+		</form>
+
+	</div>
+	<h2>Category wise quantity for year</h2>
+	<div>
+		<form th:action="@{/home/categoryWiseByYear}" method="post">
+			<label for="year">Year:</label>
+			<input type="number" id="year" name="year" min="2000" max="2023" required>
+
+			<button type="submit">Search</button>
+		</form>
+	</div>
+	<form method="get" th:action="@{/home}">
+		<button type="submit">Home</button>
+	</form>
+	<div th:if="${sales.isEmpty()}" align="center">
+		<div class="indicator error" align="center"></div>
+		<p>No data found for the year: <b th:text="${year}" /></p>
+	</div>
+	<div align="center" th:unless="${sales.isEmpty()}">
+		<div class="indicator success"></div>
+		<p>Year: <b th:text="${year}" /></p>
+		<table border="1" class="styled-table">
+			<thead>
+				<tr>
+					<th>Category</th>
+					<th>Quantity</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="sale : ${sales}">
+					<td th:text="${sale.categoryName}"></td>
+					<td th:text="${sale.totalQuantity}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+
+</html>

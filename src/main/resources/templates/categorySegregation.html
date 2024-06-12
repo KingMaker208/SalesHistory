@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Sales by Date</title>
+	<link href="/css/home.css" rel="stylesheet">
+	<link href="/css/Table.css" rel="stylesheet">
+</head>
+
+<body>
+	<div align="right">
+		<form action="/logout" method="post">
+			<button type="submit">Logout</button>
+		</form>
+
+	</div>
+	<div align="center">
+		<h2>Sales Data</h2>
+		<form method="get" th:action="@{/home}">
+			<button type="submit">Home</button>
+		</form>
+		<table border="1" class="styled-table">
+			<thead>
+				<tr>
+					<th>Category</th>
+					<th>Total Quantity</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="sale : ${sales}">
+					<td th:text="${sale.categoryName}"></td>
+					<td th:text="${sale.totalQuantity}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+
+</html>
